@@ -1,3 +1,5 @@
+using Data.Entities;
+
 namespace FirstWinFormApp;
 
 public partial class UserEditForm : Form
@@ -72,18 +74,24 @@ public partial class UserEditForm : Form
     {
         if (ValidateFirstName())
             errorProvider.Clear();
+        else
+            e.Cancel = true;
     }
 
     private void edSecondName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
     {
         if (ValidateSecondName())
             errorProvider.Clear();
+        else
+            e.Cancel = true;
     }
 
     private void edAddress_Validating(object sender, System.ComponentModel.CancelEventArgs e)
     {
         if (ValidateAddress())
             errorProvider.Clear();
+        else
+            e.Cancel = true;
     }
     #endregion
 

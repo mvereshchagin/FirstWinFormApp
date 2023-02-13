@@ -1,17 +1,22 @@
-﻿namespace FirstWinFormApp;
+﻿using Data.Entities;
+using Data.Repositories;
+
+namespace FirstWinFormApp;
 
 public partial class UserInfoForm : Form
 {
-    private User _user = new User()
-    {
-        FirstName = "Дмитрий",
-        SecondName = "Медведем",
-        Address = "Москва, кремль"
-    };
+    private readonly IUserRepository _userRepository;
+    private User _user;
 
-    public UserInfoForm()
+
+    public UserInfoForm(IUserRepository userRepository, int userId)
     {
         InitializeComponent();
+
+        _userRepository = userRepository;
+
+        _user = _userRepository.GetById(userId) ?? 
+            throw new ArgumentException($"Не удалось найти пользователя с Id = {userId}");
 
         UpdateData();
     }
